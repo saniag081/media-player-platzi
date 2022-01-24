@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>this</title>
+    </head>
+    <body>
+        <h1>Abre la consola</h1>
+        
+        <script>
+            //this en el global scope
+            console.log(`this: ${this}`);
+
+            //this en el contexto de una funcion
+            function whoIsThis(){
+                return this;
+            }
+
+            console.log(whoIsThis());
+
+            //this en el scope de una funcion en strict mode
+            function whoIsThisStrict(){
+                "use strict";
+                return this;
+            }
+
+            console.log(whoIsThisStrict());
+
+            //this en el contexto de un objeto
+            const person = {
+                name: 'agriel',
+                saludar: function() {
+                    console.log(`Hola soy ${this.name}`);
+                }
+            }
+
+            person.saludar()
+
+            //this cuando sacamos una funcion de un objeto
+            const accion = person.saludar;
+            accion();
+
+            //this en el contexto de una "clase"
+            function Person(name){
+                this.name = name;
+            }
+
+            Person.prototype.saludar = function() {
+                console.log(`Me llamo ${this.name}`);
+            }
+
+            const angela = new Person('angela');
+            angela.saludar();
+        </script>
+    </body>
+</html>
