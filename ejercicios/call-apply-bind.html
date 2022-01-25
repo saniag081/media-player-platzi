@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call apply bind</title>
+</head>
+<body>
+    <h1>Abre la consola</h1>
+
+    <ul>
+        <li><button class="call-to-action">aprender</button></li>
+        <li><button class="call-to-action">aprender mas</button></li>
+        <li><button class="call-to-action">aprender mas x2</button></li>
+    </ul>
+
+    <script>
+        //Establece 'this' usando 'call'
+        function saludar(){
+            console.log(`Hola soy ${this.name} ${this.apellido}`)
+        }
+
+        const pepe = {
+            name: 'Pepe',
+            apellido: 'Perez'
+        }
+
+        saludar.call(pepe);
+
+        function caminar(metros, direccion){
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}`);
+        }
+
+        caminar.call(pepe, 400, 'norte');
+
+        // Establecer 'this' en una nueva funcion usando 'bind' 
+        caminar.apply(pepe, [800, 'noreste'])
+
+        // Establecer 'this' en una nueva funcion usando 'bind'
+        const daniel = {
+            name: 'Daniel',
+            apellido: 'Sanchez'
+        }
+
+        const danielSaluda = saludar.bind(daniel);
+        danielSaluda();
+
+        const danielCamina = caminar.bind(daniel);
+        danielCamina(1000, 'este');
+
+        //cuando es util usar uno de estos metodos
+
+        const buttons = document.getElementsByClassName('call-to-action');
+        // buttons.forEach(button => {
+        //     button.onclick = () => alert('Nunca pares de aprender!');
+        // });
+
+        //node list
+        Array.prototype.forEach.call(buttons, (button => {
+             button.onclick = () => alert('Nunca pares de aprender!');
+        }))
+    </script>
+</body>
+</html>
