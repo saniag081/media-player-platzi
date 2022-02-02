@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herencia</title>
+</head>
+<body>
+    <h1>Abre la consolsa</h1>
+
+    <script>
+        function Hero(name){
+            // this hero = Object.create(Hero.prototype);
+            this.name = name;
+
+            // return this;
+        }
+
+        Hero.prototype.saludar = function(){
+            console.log(`New: ${this.name}`);
+        }
+
+        const zelda = new Hero('Zelda');
+        zelda.saludar();
+        
+        const link = new Hero('Link');
+        link.saludar();
+
+        //propiedades de la instancia
+        console.log('Name: ' + zelda.name);
+        
+        //propiedades de la "clase"
+        console.log('Saludar: ' + zelda.saludar);
+        
+        //propiedades heredadas ej: toString
+        console.log('toString: ' + zelda.toString);
+        
+        //hasOnwProperty (de donde sale toString o esto?)
+        console.log('zelda.hasOwnProperty("saludar"): ' + zelda.hasOwnProperty("saludar"));
+
+    </script>
+</body>
+</html>
